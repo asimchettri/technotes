@@ -26,7 +26,7 @@ URL:https://technotes-w4rw.onrender.com
 | State Management | Redux Toolkit |
 | API Handling  | Axios |
 | Authentication| JWT (JSON Web Tokens) |
-| Backend       | [See backend repo](#https://github.com/asimchettri/technotes-backend)  |
+| Backend       | #https://github.com/asimchettri/technotes-backend  |
 
 ---
 
