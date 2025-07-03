@@ -1,6 +1,8 @@
-# Repair Manager – Task Management System URL:https://technotes-w4rw.onrender.com
+# Repair Manager – Task Management System 
 
 A task management application built for mobile repair shops using the **MERN stack**. This repository contains the **frontend** portion of the project built with **React**, designed to help employers assign tasks, manage staff, and monitor repair workflows effectively.
+
+URL:https://technotes-w4rw.onrender.com
 
 ---
 
