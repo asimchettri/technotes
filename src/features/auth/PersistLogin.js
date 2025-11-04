@@ -25,14 +25,12 @@ const PersistLogin = () => {
 
     useEffect(() => {
 
-        if (effectRan.current === true || process.env.NODE_ENV !== 'development') { // React 18 Strict Mode
+        if (effectRan.current === true || process.env.NODE_ENV !== 'development') {
 
             const verifyRefreshToken = async () => {
                 console.log('verifying refresh token')
                 try {
-                    //const response = 
                     await refresh()
-                    //const { accessToken } = response.data
                     setTrueSuccess(true)
                 }
                 catch (err) {
@@ -40,23 +38,25 @@ const PersistLogin = () => {
                 }
             }
 
-            if (!token && persist) verifyRefreshToken()
+            // Only verify if no token exists and persist is enabled
+            if (!token && persist) {
+                verifyRefreshToken()
+            }
         }
 
         return () => effectRan.current = true
 
-        // eslint-disable-next-line
     }, [])
 
 
     let content
-    if (!persist) { // persist: no
+    if (!persist) {
         console.log('no persist')
         content = <Outlet />
-    } else if (isLoading) { //persist: yes, token: no
+    } else if (isLoading) {
         console.log('loading')
         content = <PulseLoader color={"#FFF"} />
-    } else if (isError) { //persist: yes, token: no
+    } else if (isError) {
         console.log('error')
         content = (
             <p className='errmsg'>
@@ -64,12 +64,12 @@ const PersistLogin = () => {
                 <Link to="/login">Please login again</Link>.
             </p>
         )
-    } else if (isSuccess && trueSuccess) { //persist: yes, token: yes
+    } else if (isSuccess && trueSuccess) {
         console.log('success')
         content = <Outlet />
-    } else if (token && isUninitialized) { //persist: yes, token: yes
+    } else if (token && isUninitialized) {
+        // Token exists from fresh login, no need to refresh
         console.log('token and uninit')
-        console.log(isUninitialized)
         content = <Outlet />
     }
 

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://technotes-api.onrender.com',
+    baseUrl: 'https://technotes-backend-ezom.onrender.com',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.token
@@ -15,13 +15,11 @@ const baseQuery = fetchBaseQuery({
 })
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-    // console.log(args) // request url, method, body
-    // console.log(api) // signal, dispatch, getState()
-    // console.log(extraOptions) //custom like {shout: true}
+ 
 
     let result = await baseQuery(args, api, extraOptions)
 
-    // If you want, handle other status codes, too
+    
     if (result?.error?.status === 403) {
         console.log('sending refresh token')
 
